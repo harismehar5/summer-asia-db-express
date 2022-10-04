@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+require("dotenv").config()
 var cors = require('cors')
 
 const url = 'mongodb://localhost/summer_asia'
@@ -11,7 +12,7 @@ const expenseRouter = require('./routes/expenseRoutes')
 const saleRouter = require("./routes/saleRoutes")
 
 const app = express()
-const port = 3001
+const PORT = process.env.PORT || 3001
 
 app.use(cors())
 mongoose.connect(url, {useNewUrlParser : true})
@@ -27,6 +28,6 @@ app.use('/product', productRouter)
 app.use('/expense', expenseRouter)
 app.use('/sale', saleRouter)
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
 })
