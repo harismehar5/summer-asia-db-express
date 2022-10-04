@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 require("dotenv").config()
 var cors = require('cors')
 
-const url = 'mongodb://localhost/summer_asia'
+const URL = 'mongodb://localhost/summer_asia'
 
 const productRouter = require('./routes/productRoutes')
 const supplierRouter = require('./routes/supplierRoutes')
@@ -12,10 +12,11 @@ const expenseRouter = require('./routes/expenseRoutes')
 const saleRouter = require("./routes/saleRoutes")
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 
 app.use(cors())
-mongoose.connect(url, {useNewUrlParser : true})
+console.log("Database url",process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser : true})
 
 const conn = mongoose.connection
 conn.on('open', function(){
