@@ -120,9 +120,61 @@ exports.getCashInById = async (req, res) => {
   }
 };
 
+exports.getAllCashIn = async (req, res) => {
+  try {
+    const cash_data = await Customer.find();
+    const data = [];
+    for (var i = 0; i < cash_data[0].cash.length; i++) {
+      if (cash_data[0].cash[i].cash_type === "Cash In") {
+        data.push(cash_data[0].cash[i]);
+      }
+    }
+    if (cash_data.length !== 0) {
+      res.json({ error: false, data: data });
+    } else {
+      res.json({
+        error: true,
+        error_msg: "No data found...!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
+
 exports.getCashOutById = async (req, res) => {
   try {
     const cash_data = await Customer.find({ _id: req.params.id });
+    const data = [];
+    for (var i = 0; i < cash_data[0].cash.length; i++) {
+      if (cash_data[0].cash[i].cash_type === "Cash Out") {
+        data.push(cash_data[0].cash[i]);
+      }
+    }
+    if (cash_data.length !== 0) {
+      res.json({ error: false, data: data });
+    } else {
+      res.json({
+        error: true,
+        error_msg: "No data found...!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
+
+exports.getAllCashOut = async (req, res) => {
+  try {
+    const cash_data = await Customer.find();
     const data = [];
     for (var i = 0; i < cash_data[0].cash.length; i++) {
       if (cash_data[0].cash[i].cash_type === "Cash Out") {
