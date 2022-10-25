@@ -123,14 +123,31 @@ exports.getCashInById = async (req, res) => {
 exports.getAllCashIn = async (req, res) => {
   try {
     const cash_data = await Supplier.find();
-    const data = [];
-    for (var i = 0; i < cash_data[0].cash.length; i++) {
-      if (cash_data[0].cash[i].cash_type === "Cash In") {
-        data.push(cash_data[0].cash[i]);
+    let cashArray = [];
+    let cashInArray = [];
+    let userObject = {};
+    for (var i = 0; i < cash_data.length; i++) {
+      if (cash_data[i].cash !== undefined) {
+        for (var k = 0; k < cash_data[i].cash.length; k++) {
+          if (cash_data[i].cash[k].cash_type === "Cash In") {
+            cashInArray.push(cash_data[i].cash[k]);
+          }
+        }
+        userObject = {
+          _id: cash_data[i]._id,
+          name: cash_data[i].name,
+          phone: cash_data[i].phone,
+          address: cash_data[i].address,
+          opening_balance: cash_data[i].opening_balance,
+          status: true,
+          cash: cashInArray,
+        };
+        cashArray.push(userObject);
+        cashInArray = [];
       }
     }
     if (cash_data.length !== 0) {
-      res.json({ error: false, data: data });
+      res.json({ error: false, data: cashArray });
     } else {
       res.json({
         error: true,
@@ -175,14 +192,31 @@ exports.getCashOutById = async (req, res) => {
 exports.getAllCashOut = async (req, res) => {
   try {
     const cash_data = await Supplier.find();
-    const data = [];
-    for (var i = 0; i < cash_data[0].cash.length; i++) {
-      if (cash_data[0].cash[i].cash_type === "Cash Out") {
-        data.push(cash_data[0].cash[i]);
+    let cashArray = [];
+    let cashInArray = [];
+    let userObject = {};
+    for (var i = 0; i < cash_data.length; i++) {
+      if (cash_data[i].cash !== undefined) {
+        for (var k = 0; k < cash_data[i].cash.length; k++) {
+          if (cash_data[i].cash[k].cash_type === "Cash Out") {
+            cashInArray.push(cash_data[i].cash[k]);
+          }
+        }
+        userObject = {
+          _id: cash_data[i]._id,
+          name: cash_data[i].name,
+          phone: cash_data[i].phone,
+          address: cash_data[i].address,
+          opening_balance: cash_data[i].opening_balance,
+          status: true,
+          cash: cashInArray,
+        };
+        cashArray.push(userObject);
+        cashInArray = [];
       }
     }
     if (cash_data.length !== 0) {
-      res.json({ error: false, data: data });
+      res.json({ error: false, data: cashArray });
     } else {
       res.json({
         error: true,
