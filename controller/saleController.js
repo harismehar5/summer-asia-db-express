@@ -42,3 +42,23 @@ exports.addSale = async (req, res) => {
     }
   }
 };
+
+exports.getSale = async (req, res) => {
+  try {
+    const sales = await Sale.find();
+    if (sales.length !== 0) {
+      res.json({ error: false, sales: sales });
+    } else {
+      res.json({
+        error: true,
+        error_msg: "No data found...!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
