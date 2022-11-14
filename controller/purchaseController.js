@@ -22,7 +22,7 @@ exports.addPurchase = async (req, res) => {
     const purchases = new Purchase({
       total_amount: req.body.total_amount,
       total_quantity: req.body.total_quantity,
-      customer: req.body.customer_id,
+      customer: req.body.customer,
       submit_date: req.body.submit_date,
       order_details: product_list,
     });
