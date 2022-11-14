@@ -65,19 +65,7 @@ exports.getPurchase = async (req, res) => {
 
 exports.getPurchaseById = async (req, res) => {
   try {
-    const purchases = await Purchase.aggregate([
-      {
-        $match: { _id: req.params.id },
-      },
-      {
-        $lookup: {
-          from: "Supplier",
-          localField: "supplier",
-          foreignField: "_id",
-          as: "customers",
-        },
-      },
-    ]);
+    const purchases = await Purchase.findById(req.params.id).populate({ path: 'supplier', select: 'name' });
     if (purchases.length !== 0) {
       res.json({ error: false, purchases: purchases });
     } else {

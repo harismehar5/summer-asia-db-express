@@ -63,56 +63,6 @@ exports.getSale = async (req, res) => {
   }
 };
 
-// exports.getSaleById = async (req, res) => {
-//   try {
-//     const sales = await Sale.findById(req.params.id)
-//     if (sales.length !== 0) {
-//       res.json({ error: false, sales: sales });
-//     } else {
-//       res.json({
-//         error: true,
-//         error_msg: "No data found...!",
-//       });
-//     }
-//   } catch (err) {
-//     res.json({
-//       error: true,
-//       error_msg: "Something went wrong...!",
-//       response: err.toString(),
-//     });
-//   }
-// };
-// exports.getSaleById = async (req, res) => {
-//   try {
-//     const sales = await Sale.aggregate([
-//       {
-//         $match: { _id: req.params.id },
-//       },
-//       {
-//         $lookup: {
-//           from: "Customer",
-//           localField: "customer",
-//           foreignField: "_id",
-//           as: "customers",
-//         },
-//       },
-//     ]);
-//     if (sales.length !== 0) {
-//       res.json({ error: false, sales: sales });
-//     } else {
-//       res.json({
-//         error: true,
-//         error_msg: "No data found...!",
-//       });
-//     }
-//   } catch (err) {
-//     res.json({
-//       error: true,
-//       error_msg: "Something went wrong...!",
-//       response: err.toString(),
-//     });
-//   }
-// };
 exports.getSaleById = async (req, res) => {
   try {
     const sales = await Sale.findById(req.params.id).populate({ path: 'customer', select: 'name' })
