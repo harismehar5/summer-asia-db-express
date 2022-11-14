@@ -45,7 +45,7 @@ exports.addSale = async (req, res) => {
 
 exports.getSale = async (req, res) => {
   try {
-    const sales = await Sale.find();
+    const sales = await Sale.find().populate({ path :"customer", select:"name"});
     if (sales.length !== 0) {
       res.json({ error: false, sales: sales });
     } else {

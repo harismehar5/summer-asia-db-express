@@ -45,7 +45,7 @@ exports.addPurchase = async (req, res) => {
 
 exports.getPurchase = async (req, res) => {
   try {
-    const purchases = await Purchase.find();
+    const purchases = await Purchase.find().populate({ path :"supplier", select:"name"});
     if (purchases.length !== 0) {
       res.json({ error: false, purchases: purchases });
     } else {
