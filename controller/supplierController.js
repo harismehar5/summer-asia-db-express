@@ -266,7 +266,8 @@ exports.getSuppliersCashFlow = async (req, res) => {
             cashModel = {
               supplier_id: suppliers[i]._id,
               supplier_name: suppliers[i].name,
-              amount: suppliers[i].cash[k].amount,
+              cash_in_amount: suppliers[i].cash[k].cash_type === "Cash In" ? suppliers[i].cash[k].amount : 0,
+              cash_out_amount: suppliers[i].cash[k].cash_type === "Cash Out" ? suppliers[i].cash[k].amount : 0,
               cash_type: suppliers[i].cash[k].cash_type,
               description: suppliers[i].cash[k].description,
               payment_medium: suppliers[i].cash[k].payment_medium,
