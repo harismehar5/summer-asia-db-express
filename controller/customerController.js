@@ -256,23 +256,28 @@ exports.getCustomersCashFlow = async (req, res) => {
   try {
     const customers = await Customer.find();
     if (customers.length !== 0) {
-      const cashModel = {};
-      const cashFlow = []
+      let cashModel = {};
+      let cashFlow = [];
       for (let i = 0; i < customers.length; i++) {
-        for (let k = 0; k < customers[i].cash.length; k++)
-          cashModel = {
-            customer_id: customers[i]._id,
-            customer_name: customers[i].name,
-            amount: customers[i].name.cash[k].amount,
-            cash_type: customers[i].name.cash[k].cash_type,
-            description: customers[i].name.cash[k].description,
-            payment_medium: customers[i].name.cash[k].payment_medium,
-            submit_date:customers[i].name.cash[k].submit_date,
-            _id:customers[i].name.cash[k]._id,
-            updated_at: customers[i].name.cash[k].updatedAt,
-            created_at: customers[i].name.cash[k].createdAt,
-          };
-          cashFlow.push(cashModel)
+        console.log("customer array length: ", customers.length);
+        if (customers[i].cash !== undefined) {
+          for (let k = 0; k < customers[i].cash.length; k++) {
+            console.log("cash array length: ", customers[i].cash.length);
+            cashModel = {
+              customer_id: customers[i]._id,
+              customer_name: customers[i].name,
+              amount: customers[i].cash[k].amount,
+              cash_type: customers[i].cash[k].cash_type,
+              description: customers[i].cash[k].description,
+              payment_medium: customers[i].cash[k].payment_medium,
+              submit_date: customers[i].cash[k].submit_date,
+              _id: customers[i].cash[k]._id,
+              updated_at: customers[i].cash[k].updatedAt,
+              created_at: customers[i].cash[k].createdAt,
+            };
+            cashFlow.push(cashModel);
+          }
+        }
       }
       res.json({ error: false, cash_flow: cashFlow });
     } else {
