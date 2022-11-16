@@ -266,8 +266,9 @@ exports.getCustomersCashFlow = async (req, res) => {
             cashModel = {
               customer_id: customers[i]._id,
               customer_name: customers[i].name,
-              amount: customers[i].cash[k].amount,
-              cash_type: customers[i].cash[k].cash_type,
+              cash_in_amount: customers[i].cash[k].cash_type === "Cash In" ? customers[i].cash[k].amount : 0,
+              cash_out_amount: customers[i].cash[k].cash_type === "Cash Out" ? customers[i].cash[k].amount : 0,
+              cash_type: customers[i].cash[k].cash_type ,
               description: customers[i].cash[k].description,
               payment_medium: customers[i].cash[k].payment_medium,
               submit_date: customers[i].cash[k].submit_date,
