@@ -11,6 +11,7 @@ router.get("/get_cash_in_by_id/:id", SupplierController.getCashInById);
 router.get("/get_cash_out_by_id/:id", SupplierController.getCashOutById);
 router.get("/get_all_cash_in_supplier", SupplierController.getAllCashIn);
 router.get("/get_all_cash_out_supplier", SupplierController.getAllCashOut);
+router.get("/get_suppliers_cash_flow", SupplierController.getSuppliersCashFlow);
 
 router.get("/update_status/:id", SupplierController.updateStatus)
 router.route("/:id")

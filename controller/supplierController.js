@@ -252,6 +252,48 @@ exports.getSuppliers = async (req, res) => {
   }
 };
 
+exports.getSuppliersCashFlow = async (req, res) => {
+  try {
+    const suppliers = await Supplier.find();
+    if (suppliers.length !== 0) {
+      let cashModel = {};
+      let cashFlow = [];
+      for (let i = 0; i < suppliers.length; i++) {
+        console.log("supplier array length: ", suppliers.length);
+        if (suppliers[i].cash !== undefined) {
+          for (let k = 0; k < suppliers[i].cash.length; k++) {
+            console.log("cash array length: ", suppliers[i].cash.length);
+            cashModel = {
+              supplier_id: suppliers[i]._id,
+              supplier_name: suppliers[i].name,
+              amount: suppliers[i].cash[k].amount,
+              cash_type: suppliers[i].cash[k].cash_type,
+              description: suppliers[i].cash[k].description,
+              payment_medium: suppliers[i].cash[k].payment_medium,
+              submit_date: suppliers[i].cash[k].submit_date,
+              _id: suppliers[i].cash[k]._id,
+              updated_at: suppliers[i].cash[k].updatedAt,
+              created_at: suppliers[i].cash[k].createdAt,
+            };
+            cashFlow.push(cashModel);
+          }
+        }
+      }
+      res.json({ error: false, cash_flow: cashFlow });
+    } else {
+      res.json({
+        error: true,
+        error_msg: "No data found...!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
 exports.getById = async (req, res) => {
   try {
     const response = await Supplier.findById(req.params.id);
