@@ -56,7 +56,7 @@ exports.getById = async (req, res) => {
 exports.addQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
-    var updated_array = []
+    var updated_array = [];
     for (const i of product_array) {
       updated_array.push({
         updateOne: {
@@ -66,7 +66,14 @@ exports.addQuantity = async (req, res) => {
       });
     }
     const response = Product.bulkWrite(updated_array);
-  } catch (err) {}
+    res.json({ error: false, products: response });
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "No Data Found",
+      response: err.toString(),
+    });
+  }
 };
 exports.updateById = async (req, res) => {
   try {
