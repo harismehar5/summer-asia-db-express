@@ -81,7 +81,7 @@ exports.addQuantity = async (req, res) => {
     });
     // const response = Product.bulkWrite(updated_array);
     // res.json({ error: false, products: response });
-    Product.bulkWrite(bulkOps).then((res) => {
+    Product.bulkWrite(updated_array).then((res) => {
       res.json({ error: false, products: response });
     });
   } catch (err) {
