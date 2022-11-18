@@ -53,7 +53,7 @@ exports.getById = async (req, res) => {
     });
   }
 };
-exports.AddQuantity = async (req, res) => {
+exports.addQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
     var updated_array = []
