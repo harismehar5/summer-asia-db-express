@@ -56,7 +56,7 @@ exports.getById = async (req, res) => {
 exports.addQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
-    var updated_array = [];
+    // var updated_array = [];
     // for (const i of product_array) {
     //   updated_array.push({
     //     updateOne: {
@@ -65,22 +65,25 @@ exports.addQuantity = async (req, res) => {
     //     },
     //   });
     // }
-    const updated_array = product_array.map(obj => {
+    const updated_array = product_array.map((obj) => {
       return {
         updateOne: {
           filter: {
-            _id: obj._id
+            _id: obj._id,
           },
           // If you were using the MongoDB driver directly, you'd need to do
           // `update: { $set: { field: ... } }` but mongoose adds $set for you
           update: {
-            quantity: +obj.quantity
-          }
-        }
-      }
-    })
-    const response = Product.bulkWrite(updated_array);
-    res.json({ error: false, products: response });
+            quantity: +obj.quantity,
+          },
+        },
+      };
+    });
+    // const response = Product.bulkWrite(updated_array);
+    // res.json({ error: false, products: response });
+    Product.bulkWrite(bulkOps).then((res) => {
+      res.json({ error: false, products: response });
+    });
   } catch (err) {
     res.json({
       error: true,
