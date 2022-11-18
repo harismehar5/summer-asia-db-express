@@ -11,7 +11,7 @@ const customerRouter = require("./routes/customerRoutes");
 const expenseRouter = require("./routes/expenseRoutes");
 const saleRouter = require("./routes/saleRoutes");
 const purchaseRouter = require("./routes/purchaseRoutes");
-
+const stockRouter = require("./routes/stockRoutes")
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -32,6 +32,7 @@ app.use("/product", productRouter);
 app.use("/expense", expenseRouter);
 app.use("/sale", saleRouter);
 app.use("/purchase", purchaseRouter);
+app.use("/stock", stockRouter);
 
 app.all("*", (req, res) => {
     res.status(404).send("<h1>404! Page not found</h1>");

@@ -53,6 +53,60 @@ exports.getById = async (req, res) => {
     });
   }
 };
+// exports.addQuantity = async (req, res) => {
+//   try {
+//     const products = await Product.find();
+//     if (
+//       req.body.stock_log === null ||
+//       req.body.stock_log === undefined ||
+//       req.body.stock_log.length <= 0
+//     ) {
+//       res.json({
+//         error: true,
+//         error_msg: "Something went wrong...!",
+//       });
+//     } else {
+//       for (var i = 0; i < req.body.stock_log.length; i++) {
+//         var foundIndex = products.findIndex(
+//           (product) => product._id === req.body.stock_log[i].product_id
+//         );
+//         if (foundIndex > 0) {
+//           var id = products[foundIndex]._id;
+//           var stock_object = {
+//             stock_type: req.body.stock_log[i].stock_type,
+//             date: req.body.stock_log[i].date,
+//             quantity: req.body.stock_log[i].quantity,
+//           };
+//           const response = await Product.findOneAndUpdate(
+//             { _id: id },
+//             {
+//               $set: {
+//                 quantity: products[foundIndex] + req.body.stock_log[i],
+//               },
+//             },
+//             {
+//               $push: {
+//                 stock_log: stock_object,
+//               },
+//             }
+//           );
+//           res.json({ error: false, response: response });
+//         } else {
+//           res.json({
+//             error: true,
+//             error_msg: "Something is not right...!",
+//           });
+//         }
+//       }
+//     }
+//   } catch (err) {
+//     res.json({
+//       error: true,
+//       error_msg: "Something went wrong...!",
+//       response: err.toString(),
+//     });
+//   }
+// };
 exports.updateById = async (req, res) => {
   try {
     const response = await Product.updateOne(

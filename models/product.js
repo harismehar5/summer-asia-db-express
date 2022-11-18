@@ -1,21 +1,6 @@
 const mongoose = require("mongoose");
 
-const stockLog = new mongoose.Schema({
-  stock_type: {
-    type: String,
-    required: false,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-    required: false,
-  },
-  quantity: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-});
+
 const Product = new mongoose.Schema({
   name: {
     type: String,
@@ -36,7 +21,7 @@ const Product = new mongoose.Schema({
     required: true,
     default: true,
   },
-  stock_log: [stockLog],
+  // stock_log: [stockLog],
 });
 
 module.exports = mongoose.model("Product", Product);
