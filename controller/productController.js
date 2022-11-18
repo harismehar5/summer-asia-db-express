@@ -57,20 +57,34 @@ exports.addQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
     var updated_array = [];
-    for (const i of product_array) {
-      updated_array.push({
+    // for (const i of product_array) {
+    //   updated_array.push({
+    //     updateOne: {
+    //       filter: { _id: product_array[i]._id },
+    //       update: { $inc: { quantity: +product_array[i].quantity } },
+    //     },
+    //   });
+    // }
+    const updated_array = product_array.map(obj => {
+      return {
         updateOne: {
-          filter: { _id: product_array[i]._id },
-          update: { $inc: { quantity: +product_array[i].quantity } },
-        },
-      });
-    }
+          filter: {
+            _id: obj._id
+          },
+          // If you were using the MongoDB driver directly, you'd need to do
+          // `update: { $set: { field: ... } }` but mongoose adds $set for you
+          update: {
+            quantity: +obj.quantity
+          }
+        }
+      }
+    })
     const response = Product.bulkWrite(updated_array);
     res.json({ error: false, products: response });
   } catch (err) {
     res.json({
       error: true,
-      error_msg: "No Data Found",
+      error_msg: "Something went wrong...!",
       response: err.toString(),
     });
   }
