@@ -88,6 +88,7 @@ exports.addQuantity = async (req, res) => {
           error: true,
           error_msg: "Something went wrong...!",
           response: error.toString(),
+          product: req.body.products,
         });
       });
   } catch (err) {
@@ -95,6 +96,7 @@ exports.addQuantity = async (req, res) => {
       error: true,
       error_msg: "Something went wrong...!",
       response: err.toString(),
+      product: req.body.products,
     });
   }
 };
