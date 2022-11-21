@@ -60,7 +60,7 @@ exports.addQuantity = async (req, res) => {
       return {
         updateOne: {
           filter: {
-            _id: obj._id,
+            _id: obj.product,
           },
           update: {
             $inc: {
