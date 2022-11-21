@@ -103,7 +103,7 @@ exports.addQuantity = async (req, res) => {
 exports.subtractQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
-
+    console.log(req.body)
     const updated_array = product_array.map((obj) => {
       return {
         updateOne: {
@@ -125,6 +125,7 @@ exports.subtractQuantity = async (req, res) => {
         res.json({
           error: false,
           response: response,
+          product_array: product_array,
           success_msg:
             response.nModified > 0
               ? "Data updated successfully"
@@ -134,7 +135,7 @@ exports.subtractQuantity = async (req, res) => {
       .catch((error) => {
         res.json({
           error: true,
-          error_msg: "Something went wrong...!",
+          error_msg: "Something went wrong",
           response: error.toString(),
           product: req.body.products,
         });
@@ -142,7 +143,7 @@ exports.subtractQuantity = async (req, res) => {
   } catch (err) {
     res.json({
       error: true,
-      error_msg: "Something went wrong...!",
+      error_msg: "Something went wrong...1",
       response: err.toString(),
       product: req.body.products,
     });

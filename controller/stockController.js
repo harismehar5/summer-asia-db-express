@@ -39,9 +39,25 @@ exports.AddStockLog = async (req, res) => {
 };
 exports.getStocks = async (req, res) => {
   try {
-    const stocks = await Stock.find().populate({ path :"product", select:"_id name"});
+    const stocks = await Stock.find().populate({
+      path: "product",
+      select: "_id name",
+    });
+    let logObject = {};
+    let logArray = [];
     if (stocks.length !== 0) {
-      res.json({ error: false, stocks: stocks });
+      for (var i = 0; i < stocks.length; i++) {
+        logObject = {
+          _id: stocks[i]._id,
+          stock_type: stocks[i].stock_type,
+          date: stocks[i].date,
+          quantity: stocks[i].quantity,
+          product_id: stocks[i].product._id,
+          product: stocks[i].product.name,
+        };
+        logArray.push(logObject);
+      }
+      res.json({ error: false, stocks: logArray });
     } else {
       res.json({
         error: true,
