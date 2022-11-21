@@ -1,0 +1,1060 @@
+{
+	"info": {
+		"_postman_id": "1d092606-3021-4055-b7cb-7b0ecaccc342",
+		"name": "Summer Asia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8832486"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}product/get_products",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"get_products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Product B\",\r\n    \"price\": 100,\r\n    \"quantity\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}product/add_product",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"add_product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}product/6315b800c1aa3d7c4756292c",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"6315b800c1aa3d7c4756292c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update By ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Product A\",\r\n    \"price\": 100,\r\n    \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}630f191991870646b38224ea",
+							"host": [
+								"{{BASE_URL}}630f191991870646b38224ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}product/630f191991870646b38224ea",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"630f191991870646b38224ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}product/update_status/630f191991870646b38224ea",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"update_status",
+								"630f191991870646b38224ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Quantity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"products\":[\r\n    {\"quantity\":1,\"product\":\"633bdb3cc629d9c21a646faa\"}\r\n]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}product/add_quantity",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"add_quantity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subtract Quantity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"products\":[\r\n    {\"quantity\":1,\"product\":\"633bdb3cc629d9c21a646faa\"}\r\n]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}product/subtract_quantity",
+							"host": [
+								"{{BASE_URL}}product"
+							],
+							"path": [
+								"subtract_quantity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplier",
+			"item": [
+				{
+					"name": "Add Supplier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Product B\",\r\n    \"phone\": \"+923035445579\",\r\n    \"address\": \"Gujranwala, Pakistan\",\r\n    \"opening_balance\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}supplier/add_supplier",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"add_supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/get_suppliers",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"get_suppliers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Supplier By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/6315d458cd140be9470f66e7",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"6315d458cd140be9470f66e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update By ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Supplier A\",\r\n    \"phone\": \"+923035445579\",\r\n    \"address\": \"Gujranwala, Pakistan\",\r\n    \"opening_balance\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}supplier/6315d458cd140be9470f66e7",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"6315d458cd140be9470f66e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Supplier",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/6315d605077a5239c1cd8cf9",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"6315d605077a5239c1cd8cf9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Supplier",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}supplier/update_status/6315d458cd140be9470f66e7",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"update_status",
+								"6315d458cd140be9470f66e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cash In By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/get_cash_in_by_id/6351567d6eabf8471c790bbf",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"get_cash_in_by_id",
+								"6351567d6eabf8471c790bbf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cash In",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":1100,\r\n    \"description\":\"Recieved By Fahad\",\r\n    \"payment_medium\":\"Jazz Cash\",\r\n    \"submit_date\": \"10-25-2022\",\r\n    \"cash_type\": \"Cash In\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}supplier/add_cash_in/6351567d6eabf8471c790bbf",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"add_cash_in",
+								"6351567d6eabf8471c790bbf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cash Out",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":1000,\r\n    \"description\":\"Recieved By Haris\",\r\n    \"payment_medium\":\"Bank Transfer\",\r\n    \"submit_date\": \"09-06-2022\",\r\n    \"cash_type\": \"Cash Out\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}supplier/add_cash_out/6315d458cd140be9470f66e7",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"add_cash_out",
+								"6315d458cd140be9470f66e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cash Out By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/get_cash_out_by_id/6315d458cd140be9470f66e7",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"get_cash_out_by_id",
+								"6315d458cd140be9470f66e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cash In",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/get_all_cash_in_supplier",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"get_all_cash_in_supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cash Out",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/get_all_cash_out_supplier",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"get_all_cash_out_supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Suppliers Cash Flow",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}supplier/get_suppliers_cash_flow",
+							"host": [
+								"{{BASE_URL}}supplier"
+							],
+							"path": [
+								"get_suppliers_cash_flow"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Customer A\",\r\n    \"phone\": \"+923007459694\",\r\n    \"address\": \"Gujranwala, Pakistan\",\r\n    \"opening_balance\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}customer/add_customer",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"add_customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}customer/get_customers",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"get_customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/6315da472b224632cd2616c6",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"6315da472b224632cd2616c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Customer C\",\r\n    \"phone\": \"+923035445579\",\r\n    \"address\": \"Gujranwala, Pakistan\",\r\n    \"opening_balance\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}customer/6315db5c2b224632cd2616ca",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"6315db5c2b224632cd2616ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/6315db5c2b224632cd2616ca",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"6315db5c2b224632cd2616ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}customer/update_status/6315da472b224632cd2616c6",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"update_status",
+								"6315da472b224632cd2616c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cash In",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":1200,\r\n    \"description\":\"Meezan bank\",\r\n    \"payment_medium\":\"By Hand\",\r\n    \"submit_date\": \"11-16-2022\",\r\n    \"cash_type\": \"Cash In\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}customer/add_cash_in/6351522e6eabf8471c790bb1",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"add_cash_in",
+								"6351522e6eabf8471c790bb1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cash Out",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":1000,\r\n    \"description\":\"Recieved By Aman\",\r\n    \"payment_medium\":\"Cash\",\r\n    \"submit_date\": \"10-26-2022\",\r\n    \"cash_type\": \"Cash Out\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}customer/add_cash_out/635154846eabf8471c790bb9",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"add_cash_out",
+								"635154846eabf8471c790bb9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cash In By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/get_cash_in_by_id/6351522e6eabf8471c790bb1",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"get_cash_in_by_id",
+								"6351522e6eabf8471c790bb1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cash Out By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/get_cash_out_by_id/6315da472b224632cd2616c6",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"get_cash_out_by_id",
+								"6315da472b224632cd2616c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cash In",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/get_all_cash_in_customer",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"get_all_cash_in_customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cash Out",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/get_all_cash_out_customer",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"get_all_cash_out_customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customers Cash Flow",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}customer/get_customers_cash_flow",
+							"host": [
+								"{{BASE_URL}}customer"
+							],
+							"path": [
+								"get_customers_cash_flow"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expense",
+			"item": [
+				{
+					"name": "Add Expense",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Petrol\",\r\n    \"description\": \"Haris's bike petrol\",\r\n    \"amount\": 120,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}expense/add_expense",
+							"host": [
+								"{{BASE_URL}}expense"
+							],
+							"path": [
+								"add_expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Expense",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}expense/get_expenses",
+							"host": [
+								"{{BASE_URL}}expense"
+							],
+							"path": [
+								"get_expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Expense By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}expense/6316dcb175449102e655a593",
+							"host": [
+								"{{BASE_URL}}expense"
+							],
+							"path": [
+								"6316dcb175449102e655a593"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update By ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diesel\",\r\n    \"description\": \"Haris's car diesel\",\r\n    \"amount\": 1200,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}expense/6316dcb175449102e655a593",
+							"host": [
+								"{{BASE_URL}}expense"
+							],
+							"path": [
+								"6316dcb175449102e655a593"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Expense",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}expense/6316dcb175449102e655a593",
+							"host": [
+								"{{BASE_URL}}expense"
+							],
+							"path": [
+								"6316dcb175449102e655a593"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Expense",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}expense/update_status/6316df379e943ab4531ed6f6",
+							"host": [
+								"{{BASE_URL}}expense"
+							],
+							"path": [
+								"update_status",
+								"6316df379e943ab4531ed6f6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sale",
+			"item": [
+				{
+					"name": "Add Sale",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"total_amount\": 200,\r\n    \"total_quantity\": 2,\r\n    \"customer\": \"6315da472b224632cd2616c6\",\r\n    \"submit_date\": \"09-26-2022\",\r\n    \"order_details\": [{\r\n        \"quantity\" : 2,\r\n        \"amount\" : 200,\r\n        \"product\" : \"630f191991870646b38224ea\"\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}sale/add_sale",
+							"host": [
+								"{{BASE_URL}}sale"
+							],
+							"path": [
+								"add_sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sale",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}sale/get_sale",
+							"host": [
+								"{{BASE_URL}}sale"
+							],
+							"path": [
+								"get_sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sale By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}sale/6371d6653bf1c0ccae26f4e4",
+							"host": [
+								"{{BASE_URL}}sale"
+							],
+							"path": [
+								"6371d6653bf1c0ccae26f4e4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Purchase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}purchase/get_purchase",
+							"host": [
+								"{{BASE_URL}}purchase"
+							],
+							"path": [
+								"get_purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Purchase By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}purchase/637217df7edfe6c820f0e823",
+							"host": [
+								"{{BASE_URL}}purchase"
+							],
+							"path": [
+								"637217df7edfe6c820f0e823"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock",
+			"item": [
+				{
+					"name": "Add Stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"stock_log\" : [{\r\n    \"product\":\"633bdb3cc629d9c21a646faa\",\r\n    \"quantity\":\"5\",\r\n    \"date\":\"2022-11-18T00:00:00.000Z\",\r\n    \"stock_type\":\"Stock In\"\r\n},{\r\n    \"product\":\"63515dc46eabf8471c790bcc\",\r\n    \"quantity\":\"10\",\r\n    \"date\":\"2022-11-18T00:00:00.000Z\",\r\n    \"stock_type\":\"Stock In\"\r\n}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}stock/add_stock_log",
+							"host": [
+								"{{BASE_URL}}stock"
+							],
+							"path": [
+								"add_stock_log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stock Log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}stock/get_stock_log",
+							"host": [
+								"{{BASE_URL}}stock"
+							],
+							"path": [
+								"get_stock_log"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
