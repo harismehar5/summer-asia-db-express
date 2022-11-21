@@ -101,11 +101,12 @@ exports.addQuantity = async (req, res) => {
 exports.subtractQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
+
     const updated_array = product_array.map((obj) => {
       return {
         updateOne: {
           filter: {
-            _id: obj._id,
+            _id: obj.product,
           },
           update: {
             $inc: {
@@ -133,6 +134,7 @@ exports.subtractQuantity = async (req, res) => {
           error: true,
           error_msg: "Something went wrong...!",
           response: error.toString(),
+          product: req.body.products,
         });
       });
   } catch (err) {
@@ -140,6 +142,7 @@ exports.subtractQuantity = async (req, res) => {
       error: true,
       error_msg: "Something went wrong...!",
       response: err.toString(),
+      product: req.body.products,
     });
   }
 };
