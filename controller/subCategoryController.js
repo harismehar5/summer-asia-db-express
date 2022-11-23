@@ -3,7 +3,7 @@ const SubCategory = require("../models/category");
 exports.addSubCategory = async (req, res) => {
   const subCategory = new SubCategory({
     name: req.body.name,
-    Category : req.body.category
+    category : req.body.category
   });
   try {
     const response = await subCategory.save();
