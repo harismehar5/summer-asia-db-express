@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const SubCategory = new mongoose.Schema({
   name: {
     type: String,
@@ -11,7 +10,7 @@ const SubCategory = new mongoose.Schema({
     required: true,
     default: true,
   },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
   // stock_log: [stockLog],
 });
 
