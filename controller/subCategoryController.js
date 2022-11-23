@@ -22,7 +22,7 @@ exports.addSubCategory = async (req, res) => {
 };
 exports.getSubCategories = async (req, res) => {
   try {
-    const subCategories = await SubCategory.find();
+    const subCategories = await SubCategory.find().populate({ path :"category", select:"name"});
     if (subCategories.length !== 0) {
       res.json({ error: false, sub_categories: subCategories });
     } else {
