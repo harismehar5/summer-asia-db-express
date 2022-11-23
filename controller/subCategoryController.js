@@ -3,7 +3,7 @@ const SubCategory = require("../models/subCategory");
 exports.addSubCategory = async (req, res) => {
   const subCategory = new SubCategory({
     name: req.body.name,
-    category : req.body.category
+    category: req.body.category,
   });
   try {
     const response = await subCategory.save();
@@ -22,9 +22,23 @@ exports.addSubCategory = async (req, res) => {
 };
 exports.getSubCategories = async (req, res) => {
   try {
-    const subCategories = await SubCategory.find().populate({ path :"category", select:"name"});
+    const subCategories = await SubCategory.find().populate({
+      path: "category",
+      select: "name",
+    });
+    var sub_category_array = [];
+    var sub_category_object = {};
+    for (var i = 0; i < subCategories.length; i++) {
+      sub_category_object = {
+        _id: subCategories[i]._id,
+        name: subCategories[i].name,
+        status: subCategories[i].status,
+        category: subCategories[i].category.name,
+      };
+      sub_category_array.push(sub_category_object);
+    }
     if (subCategories.length !== 0) {
-      res.json({ error: false, sub_categories: subCategories });
+      res.json({ error: false, sub_categories: sub_category_array });
     } else {
       res.json({
         error: true,
