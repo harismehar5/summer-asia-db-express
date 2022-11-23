@@ -1055,6 +1055,188 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}category/get_categories",
+							"host": [
+								"{{BASE_URL}}category"
+							],
+							"path": [
+								"get_categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" :\"Category 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}category/add_category",
+							"host": [
+								"{{BASE_URL}}category"
+							],
+							"path": [
+								"add_category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Category B\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}category/637e2d7f1ab4a4d203822b1a",
+							"host": [
+								"{{BASE_URL}}category"
+							],
+							"path": [
+								"637e2d7f1ab4a4d203822b1a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}category/637e2d7f1ab4a4d203822b1a",
+							"host": [
+								"{{BASE_URL}}category"
+							],
+							"path": [
+								"637e2d7f1ab4a4d203822b1a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category Copy",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}subCategory/get_sub_categories",
+							"host": [
+								"{{BASE_URL}}subCategory"
+							],
+							"path": [
+								"get_sub_categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" :\"Sub Category 2\",\r\n    \"category\":\"637e2d6a1ab4a4d203822b17\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}subCategory/add_sub_category",
+							"host": [
+								"{{BASE_URL}}subCategory"
+							],
+							"path": [
+								"add_sub_category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sub Category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Category B\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}subCategory/637e318c47ecf5e03a9746bc",
+							"host": [
+								"{{BASE_URL}}subCategory"
+							],
+							"path": [
+								"637e318c47ecf5e03a9746bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sub Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}subCategory/637e318c47ecf5e03a9746bc",
+							"host": [
+								"{{BASE_URL}}subCategory"
+							],
+							"path": [
+								"637e318c47ecf5e03a9746bc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
