@@ -20,7 +20,7 @@ exports.addSubCategory = async (req, res) => {
     });
   }
 };
-exports.getCategories = async (req, res) => {
+exports.getSubCategories = async (req, res) => {
   try {
     const subCategories = await Category.find();
     if (subCategories.length !== 0) {
