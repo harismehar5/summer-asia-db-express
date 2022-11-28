@@ -1,5 +1,6 @@
+const customer = require("../models/customer");
 const Customer = require("../models/customer");
-
+const Sale = require("../models/sale");
 exports.addCustomer = async (req, res) => {
   const customers = new Customer({
     name: req.body.name,
@@ -266,9 +267,15 @@ exports.getCustomersCashFlow = async (req, res) => {
             cashModel = {
               customer_id: customers[i]._id,
               customer_name: customers[i].name,
-              cash_in_amount: customers[i].cash[k].cash_type === "Cash In" ? customers[i].cash[k].amount : 0,
-              cash_out_amount: customers[i].cash[k].cash_type === "Cash Out" ? customers[i].cash[k].amount : 0,
-              cash_type: customers[i].cash[k].cash_type ,
+              cash_in_amount:
+                customers[i].cash[k].cash_type === "Cash In"
+                  ? customers[i].cash[k].amount
+                  : 0,
+              cash_out_amount:
+                customers[i].cash[k].cash_type === "Cash Out"
+                  ? customers[i].cash[k].amount
+                  : 0,
+              cash_type: customers[i].cash[k].cash_type,
               description: customers[i].cash[k].description,
               payment_medium: customers[i].cash[k].payment_medium,
               submit_date: customers[i].cash[k].submit_date,
@@ -281,6 +288,89 @@ exports.getCustomersCashFlow = async (req, res) => {
         }
       }
       res.json({ error: false, cash_flow: cashFlow });
+    } else {
+      res.json({
+        error: true,
+        error_msg: "No data found...!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
+
+exports.getCustomersLedger = async (req, res) => {
+  try {
+    var ledgerArray = [];
+    var ledgerObject = {
+      date: "",
+      sale_ref: "",
+      cash_ref: "",
+      debit: 0,
+      credit: 0,
+      payment_medium: "",
+      description: "",
+      total_amount: "",
+    };
+    const customers = await Customer.findById(req.params.id);
+    const sales = await Sale.find({ customer: req.params.id });
+    if (customers.length !== 0 && sales.length !== 0) {
+      ledgerObject = {
+        date: "",
+        sale_ref: "",
+        cash_ref: "",
+        debit: 0,
+        credit: 0,
+        payment_medium: "",
+        description: "Opening Balance",
+        total_amount: parseInt(customers.opening_balance),
+      };
+      ledgerArray.push(ledgerObject);
+      for (var i = 0; i < customers.cash.length; i++) {
+        ledgerObject = {
+          date: new Date(customers.cash[i].submit_date).toISOString().slice(0, 10),
+          sale_ref: "",
+          cash_ref: customers.cash[i]._id,
+          debit:
+            customers.cash[i].cash_type === "Cash In"
+              ? parseInt(customers.cash[i].amount)
+              : 0,
+          credit:
+            customers.cash[i].cash_type === "Cash Out"
+              ? parseInt(customers.cash[i].amount)
+              : 0,
+          payment_medium: customers.cash[i].payment_medium,
+          description: customers.cash[i].description,
+          total_amount: 0,
+        };
+        ledgerArray.push(ledgerObject);
+      }
+      for (var k = 0; k < sales.length; k++) {
+        ledgerObject = {
+          date: new Date(sales[k].submit_date).toISOString().slice(0, 10),
+          sale_ref: sales[k]._id,
+          cash_ref: "",
+          debit: 0,
+          credit: parseInt(sales[k].total_amount),
+          payment_medium: "Cash",
+          description: "Sale",
+          total_amount: 0,
+        };
+        ledgerArray.push(ledgerObject);
+      }
+      ledgerArray.sort(function (a, b) {
+        var c = a.submit_date;
+        var d = b.submit_date;
+        return c - d;
+      });
+      for(var j = 1; j < ledgerArray.length ; j++){
+         ledgerArray[j].total_amount = parseInt(ledgerArray[j-1].total_amount) + parseInt(ledgerArray[j].credit) - parseInt(ledgerArray[j].debit)
+      }
+      res.json({ error: false, ledger: ledgerArray });
     } else {
       res.json({
         error: true,
