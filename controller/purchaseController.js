@@ -81,3 +81,19 @@ exports.getPurchaseById = async (req, res) => {
     });
   }
 };
+exports.deleteById = async (req, res) => {
+  try {
+    const response = await Purchase.deleteOne({ _id: req.params.id });
+    res.json({
+      error: false,
+      success_msg: "Data removed successfully",
+      response: response,
+    });
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "No Data Found",
+      response: err.toString(),
+    });
+  }
+};
