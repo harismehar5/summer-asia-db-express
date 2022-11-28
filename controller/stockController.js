@@ -41,7 +41,7 @@ exports.getStocks = async (req, res) => {
   try {
     const stocks = await Stock.find().populate({
       path: "product",
-      select: "_id name",
+      select: "name",
     });
     let logObject = {};
     let logArray = [];
