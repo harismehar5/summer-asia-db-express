@@ -7,7 +7,7 @@ router.get("/get_purchase", PurchaseController.getPurchase)
 
 router
   .route("/:id")
-  .get(PurchaseController.getById)
+  .get(PurchaseController.getPurchaseById)
   .delete(PurchaseController.deleteById);
 
 module.exports = router
