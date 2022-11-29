@@ -40,15 +40,6 @@ exports.addCashIn = async (req, res) => {
           cash: cashObject,
         },
       }
-      // function (error, success) {
-      //   if (error) {
-      //     console.log("-------------Error------------------");
-      //     console.log(error);
-      //     console.log("-------------Error------------------");
-      //   } else {
-      //     console.log(success);
-      //   }
-      // }
     );
     res.json({
       error: false,
@@ -260,10 +251,8 @@ exports.getCustomersCashFlow = async (req, res) => {
       let cashModel = {};
       let cashFlow = [];
       for (let i = 0; i < customers.length; i++) {
-        console.log("customer array length: ", customers.length);
         if (customers[i].cash !== undefined) {
           for (let k = 0; k < customers[i].cash.length; k++) {
-            console.log("cash array length: ", customers[i].cash.length);
             cashModel = {
               customer_id: customers[i]._id,
               customer_name: customers[i].name,
@@ -332,7 +321,9 @@ exports.getCustomersLedger = async (req, res) => {
       ledgerArray.push(ledgerObject);
       for (var i = 0; i < customers.cash.length; i++) {
         ledgerObject = {
-          date: new Date(customers.cash[i].submit_date).toISOString().slice(0, 10),
+          date: new Date(customers.cash[i].submit_date)
+            .toISOString()
+            .slice(0, 10),
           sale_ref: "",
           cash_ref: customers.cash[i]._id,
           debit:
@@ -363,12 +354,15 @@ exports.getCustomersLedger = async (req, res) => {
         ledgerArray.push(ledgerObject);
       }
       ledgerArray.sort(function (a, b) {
-        var c = a.submit_date;
-        var d = b.submit_date;
+        var c = new Date(a.date);
+        var d = new Date(b.date);
         return c - d;
       });
-      for(var j = 1; j < ledgerArray.length ; j++){
-         ledgerArray[j].total_amount = parseInt(ledgerArray[j-1].total_amount) + parseInt(ledgerArray[j].credit) - parseInt(ledgerArray[j].debit)
+      for (var j = 1; j < ledgerArray.length; j++) {
+        ledgerArray[j].total_amount =
+          parseInt(ledgerArray[j - 1].total_amount) +
+          parseInt(ledgerArray[j].credit) -
+          parseInt(ledgerArray[j].debit);
       }
       res.json({ error: false, ledger: ledgerArray });
     } else {

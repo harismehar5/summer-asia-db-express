@@ -1,5 +1,5 @@
 const Supplier = require("../models/supplier");
-
+const Purchase = require("../models/purchase");
 exports.addSupplier = async (req, res) => {
   const suppliers = new Supplier({
     name: req.body.name,
@@ -266,8 +266,14 @@ exports.getSuppliersCashFlow = async (req, res) => {
             cashModel = {
               supplier_id: suppliers[i]._id,
               supplier_name: suppliers[i].name,
-              cash_in_amount: suppliers[i].cash[k].cash_type === "Cash In" ? suppliers[i].cash[k].amount : 0,
-              cash_out_amount: suppliers[i].cash[k].cash_type === "Cash Out" ? suppliers[i].cash[k].amount : 0,
+              cash_in_amount:
+                suppliers[i].cash[k].cash_type === "Cash In"
+                  ? suppliers[i].cash[k].amount
+                  : 0,
+              cash_out_amount:
+                suppliers[i].cash[k].cash_type === "Cash Out"
+                  ? suppliers[i].cash[k].amount
+                  : 0,
               cash_type: suppliers[i].cash[k].cash_type,
               description: suppliers[i].cash[k].description,
               payment_medium: suppliers[i].cash[k].payment_medium,
@@ -281,6 +287,94 @@ exports.getSuppliersCashFlow = async (req, res) => {
         }
       }
       res.json({ error: false, cash_flow: cashFlow });
+    } else {
+      res.json({
+        error: true,
+        error_msg: "No data found...!",
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
+
+exports.getSuppliersLedger = async (req, res) => {
+  try {
+    var ledgerArray = [];
+    var ledgerObject = {
+      date: "",
+      purchase_ref: "",
+      cash_ref: "",
+      debit: 0,
+      credit: 0,
+      payment_medium: "",
+      description: "",
+      total_amount: "",
+    };
+    const suppliers = await Supplier.findById(req.params.id);
+    const purchases = await Purchase.find({ supplier: req.params.id });
+    if (suppliers.length !== 0 && purchases.length !== 0) {
+      ledgerObject = {
+        date: "",
+        purchase_ref: "",
+        cash_ref: "",
+        debit: 0,
+        credit: 0,
+        payment_medium: "",
+        description: "Opening Balance",
+        total_amount: parseInt(suppliers.opening_balance),
+      };
+      ledgerArray.push(ledgerObject);
+      for (var i = 0; i < suppliers.cash.length; i++) {
+        ledgerObject = {
+          date: new Date(suppliers.cash[i].submit_date)
+            .toISOString()
+            .slice(0, 10),
+          purchase_ref: "",
+          cash_ref: suppliers.cash[i]._id,
+          debit:
+            suppliers.cash[i].cash_type === "Cash In"
+              ? parseInt(suppliers.cash[i].amount)
+              : 0,
+          credit:
+            suppliers.cash[i].cash_type === "Cash Out"
+              ? parseInt(suppliers.cash[i].amount)
+              : 0,
+          payment_medium: suppliers.cash[i].payment_medium,
+          description: suppliers.cash[i].description,
+          total_amount: 0,
+        };
+        ledgerArray.push(ledgerObject);
+      }
+      for (var k = 0; k < purchases.length; k++) {
+        ledgerObject = {
+          date: new Date(purchases[k].submit_date).toISOString().slice(0, 10),
+          purchase_ref: purchases[k]._id,
+          cash_ref: "",
+          debit: 0,
+          credit: parseInt(purchases[k].total_amount),
+          payment_medium: "Cash",
+          description: "Purchase",
+          total_amount: 0,
+        };
+        ledgerArray.push(ledgerObject);
+      }
+      ledgerArray.sort(function (a, b) {
+        var c = new Date(a.date);
+        var d = new Date(b.date);
+        return c - d;
+      });
+      for (var j = 1; j < ledgerArray.length; j++) {
+        ledgerArray[j].total_amount =
+          parseInt(ledgerArray[j - 1].total_amount) +
+          parseInt(ledgerArray[j].credit) -
+          parseInt(ledgerArray[j].debit);
+      }
+      res.json({ error: false, ledger: ledgerArray });
     } else {
       res.json({
         error: true,
