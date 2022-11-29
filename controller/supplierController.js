@@ -319,6 +319,7 @@ exports.getSuppliersLedger = async (req, res) => {
     const purchases = await Purchase.find({ supplier: req.params.id });
     if (suppliers.length !== 0 && purchases.length !== 0) {
       ledgerObject = {
+        _id: 0,
         date: "",
         purchase_ref: "",
         cash_ref: "",
@@ -369,6 +370,7 @@ exports.getSuppliersLedger = async (req, res) => {
         return c - d;
       });
       for (var j = 1; j < ledgerArray.length; j++) {
+        ledgerArray[j]._id = j;
         ledgerArray[j].total_amount =
           parseInt(ledgerArray[j - 1].total_amount) +
           parseInt(ledgerArray[j].credit) -
