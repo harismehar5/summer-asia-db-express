@@ -332,6 +332,7 @@ exports.getSuppliersLedger = async (req, res) => {
       ledgerArray.push(ledgerObject);
       for (var i = 0; i < suppliers.cash.length; i++) {
         ledgerObject = {
+          _id: 0,
           date: new Date(suppliers.cash[i].submit_date)
             .toISOString()
             .slice(0, 10),
@@ -353,6 +354,7 @@ exports.getSuppliersLedger = async (req, res) => {
       }
       for (var k = 0; k < purchases.length; k++) {
         ledgerObject = {
+          _id: 0,
           date: new Date(purchases[k].submit_date).toISOString().slice(0, 10),
           purchase_ref: purchases[k]._id,
           cash_ref: "",

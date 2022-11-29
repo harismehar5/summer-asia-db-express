@@ -310,6 +310,7 @@ exports.getCustomersLedger = async (req, res) => {
     const sales = await Sale.find({ customer: req.params.id });
     if (customers.length !== 0 && sales.length !== 0) {
       ledgerObject = {
+        _id: 0,
         date: "",
         sale_ref: "",
         cash_ref: "",
@@ -322,6 +323,7 @@ exports.getCustomersLedger = async (req, res) => {
       ledgerArray.push(ledgerObject);
       for (var i = 0; i < customers.cash.length; i++) {
         ledgerObject = {
+          _id: 0,
           date: new Date(customers.cash[i].submit_date)
             .toISOString()
             .slice(0, 10),
@@ -343,6 +345,7 @@ exports.getCustomersLedger = async (req, res) => {
       }
       for (var k = 0; k < sales.length; k++) {
         ledgerObject = {
+          _id: 0,
           date: new Date(sales[k].submit_date).toISOString().slice(0, 10),
           sale_ref: sales[k]._id,
           cash_ref: "",
