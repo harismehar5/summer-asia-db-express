@@ -296,6 +296,7 @@ exports.getCustomersLedger = async (req, res) => {
   try {
     var ledgerArray = [];
     var ledgerObject = {
+      _id: 0,
       date: "",
       sale_ref: "",
       cash_ref: "",
@@ -359,6 +360,7 @@ exports.getCustomersLedger = async (req, res) => {
         return c - d;
       });
       for (var j = 1; j < ledgerArray.length; j++) {
+        ledgerArray[j]._id = j;
         ledgerArray[j].total_amount =
           parseInt(ledgerArray[j - 1].total_amount) +
           parseInt(ledgerArray[j].credit) -
