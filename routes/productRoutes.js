@@ -7,8 +7,8 @@ router.get("/get_products", ProductController.getProducts);
 router.get("/update_status/:id", ProductController.updateStatus);
 router.post("/add_quantity", ProductController.addQuantity);
 router.post("/subtract_quantity", ProductController.subtractQuantity);
-router.put("/stock_in/:id", ProductController.addQuantity);
-router.put("/stock_out/:id", ProductController.subtractQuantity);
+router.put("/stock_in/:id", ProductController.stockIn);
+router.put("/stock_out/:id", ProductController.stockOut);
 router
   .route("/:id")
   .get(ProductController.getById)
