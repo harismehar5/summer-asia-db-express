@@ -185,7 +185,7 @@ exports.stockIn = async (req, res) => {
             error: true,
             error_msg: "Something went wrong...!",
             response: err.toString(),
-            result: result
+            result: result,
           });
         } else {
           res.json({
@@ -196,11 +196,6 @@ exports.stockIn = async (req, res) => {
         }
       }
     );
-    res.json({
-      error: false,
-      success_msg: "Data updated successfully",
-      response: response,
-    });
   } catch (err) {
     res.json({
       error: true,
@@ -231,11 +226,6 @@ exports.stockOut = async (req, res) => {
         }
       }
     );
-    res.json({
-      error: false,
-      success_msg: "Data updated successfully",
-      response: response,
-    });
   } catch (err) {
     res.json({
       error: true,
