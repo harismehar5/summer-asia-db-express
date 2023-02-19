@@ -185,6 +185,7 @@ exports.stockIn = async (req, res) => {
             error: true,
             error_msg: "Something went wrong...!",
             response: err.toString(),
+            result: result
           });
         } else {
           res.json({
