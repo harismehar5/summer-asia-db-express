@@ -103,7 +103,7 @@ exports.addQuantity = async (req, res) => {
 exports.subtractQuantity = async (req, res) => {
   try {
     let product_array = req.body.products;
-    console.log(req.body)
+    console.log(req.body);
     const updated_array = product_array.map((obj) => {
       return {
         updateOne: {
@@ -174,7 +174,75 @@ exports.updateById = async (req, res) => {
     });
   }
 };
+exports.stockIn = async (req, res) => {
+  try {
+    await Product.updateOne(
+      { _id: req.params.id },
+      { $inc: { quantity: req.body.quantity } },
+      function (err, result) {
+        if (err) {
+          res.json({
+            error: true,
+            error_msg: "Something went wrong...!",
+            response: err.toString(),
+          });
+        } else {
+          res.json({
+            error: false,
+            success_msg: "Data updated successfully",
+            response: response,
+          });
+        }
+      }
+    );
+    res.json({
+      error: false,
+      success_msg: "Data updated successfully",
+      response: response,
+    });
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
 
+exports.stockOut = async (req, res) => {
+  try {
+    await Product.updateOne(
+      { _id: req.params.id },
+      { $inc: { quantity: -req.body.quantity } },
+      function (err, result) {
+        if (err) {
+          res.json({
+            error: true,
+            error_msg: "Something went wrong...!",
+            response: err.toString(),
+          });
+        } else {
+          res.json({
+            error: false,
+            success_msg: "Data updated successfully",
+            response: response,
+          });
+        }
+      }
+    );
+    res.json({
+      error: false,
+      success_msg: "Data updated successfully",
+      response: response,
+    });
+  } catch (err) {
+    res.json({
+      error: true,
+      error_msg: "Something went wrong...!",
+      response: err.toString(),
+    });
+  }
+};
 exports.updateStatus = async (req, res) => {
   try {
     const response = await Product.updateOne(
