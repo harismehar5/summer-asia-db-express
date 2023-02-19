@@ -176,26 +176,15 @@ exports.updateById = async (req, res) => {
 };
 exports.stockIn = async (req, res) => {
   try {
-    await Product.updateOne(
+    const result = await Product.updateOne(
       { _id: req.params.id },
-      { $inc: { quantity: req.body.quantity } },
-      function (err, result) {
-        if (err) {
-          res.json({
-            error: true,
-            error_msg: "Something went wrong...!",
-            response: err.toString(),
-            result: result,
-          });
-        } else {
-          res.json({
-            error: false,
-            success_msg: "Data updated successfully",
-            response: response,
-          });
-        }
-      }
+      { $inc: { quantity: req.body.quantity } }
     );
+    res.json({
+      error: false,
+      success_msg: "Data updated successfully",
+      response: result,
+    });
   } catch (err) {
     res.json({
       error: true,
@@ -207,25 +196,15 @@ exports.stockIn = async (req, res) => {
 
 exports.stockOut = async (req, res) => {
   try {
-    await Product.updateOne(
+    const result = await Product.updateOne(
       { _id: req.params.id },
-      { $inc: { quantity: -req.body.quantity } },
-      function (err, result) {
-        if (err) {
-          res.json({
-            error: true,
-            error_msg: "Something went wrong...!",
-            response: err.toString(),
-          });
-        } else {
-          res.json({
-            error: false,
-            success_msg: "Data updated successfully",
-            response: response,
-          });
-        }
-      }
+      { $inc: { quantity: -req.body.quantity } }
     );
+    res.json({
+      error: false,
+      success_msg: "Data updated successfully",
+      response: result,
+    });
   } catch (err) {
     res.json({
       error: true,
